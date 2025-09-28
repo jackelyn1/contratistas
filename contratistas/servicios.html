@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    <link rel="icon" href="img/icon.jpg" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<style>
+  .service-hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(241, 115, 10, 0.1)), url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1471&auto-format&fit=crop) no-repeat center center;
+      background-size: cover;
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+      position: relative;
+  }
+  
+  .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(241, 115, 10, 0.2));
+      z-index: 1;
+  }
+  
+  .hero-content {
+      position: relative;
+      z-index: 2;
+  }
+  
+  .hero-content h1 {
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
+  }
+  .hero-content p {
+      font-size: 22px;
+      color: #f0f0f0;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      animation: fadeInUp 1s ease-out 0.3s both;
+  }
+
+  /* Animaciones */
+  @keyframes fadeInUp {
+      from {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  /* Nueva sección de estadísticas */
+  .stats-section {
+      background: linear-gradient(135deg, #f1730a, #d65a00);
+      color: white;
+      padding: 60px 20px;
+      margin-bottom: 0;
+  }
+  
+  .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      text-align: center;
+  }
+  
+  .stat-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 10px;
+  }
+  
+  .stat-text {
+      font-size: 16px;
+      opacity: 0.9;
+  }
+
+  .service-detail-section {
+      padding: 100px 20px;
+      background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+  }
+  
+  .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+  }
+  
+  .section-header h2 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 20px;
+      position: relative;
+  }
+  
+  .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: #f1730a;
+      border-radius: 2px;
+  }
+  
+  .section-header p {
+      font-size: 18px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+  }
+  
+  .service-detail-section .container {
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  .service-detail-item {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideInUp 0.8s ease-out forwards;
+  }
+  
+  .service-detail-item:nth-child(even) {
+      flex-direction: row-reverse;
+  }
+  
+  .service-detail-item:nth-child(2) {
+      animation-delay: 0.2s;
+  }
+  
+  .service-detail-item:nth-child(3) {
+      animation-delay: 0.4s;
+  }
+  
+  .service-detail-item:nth-child(4) {
+      animation-delay: 0.6s;
+  }
+  
+  @keyframes slideInUp {
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+  
+  .service-detail-image {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  }
+  
+  .service-detail-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(241, 115, 10, 0.1), rgba(0, 0, 0, 0.1));
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+  }
+  
+  .service-detail-item:hover .service-detail-image::before {
+      opacity: 1;
+  }
+  
+  .service-detail-image img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: transform 0.6s ease;
+  }
+  
+  .service-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(241, 115, 10, 0.9);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      z-index: 3;
+      backdrop-filter: blur(10px);
+  }
+  
+  .service-detail-content {
+      flex: 1;
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 
+          0 20px 40px rgba(0,0,0,0.08),
+          0 0 0 1px rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .service-detail-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, #f1730a, #d65a00);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+  }
+  
+  .service-detail-item:hover .service-detail-content::before {
+      opacity: 1;
+  }
+
+  .service-detail-item:hover .service-detail-image img {
+      transform: scale(1.05);
+  }
+  .service-detail-item:hover .service-detail-content {
+      transform: translateY(-8px);
+      box-shadow: 
+          0 30px 60px rgba(0,0,0,0.15),
+          0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  .service-detail-content h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #f1730a;
+      display: inline-block;
+      position: relative;
+  }
+  
+  .service-detail-content h2::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: #d65a00;
+      transition: width 0.4s ease;
+  }
+  
+  .service-detail-item:hover .service-detail-content h2::after {
+      width: 100%;
+  }
+  
+  .service-description {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 35px;
+      line-height: 1.7;
+      background: rgba(241, 115, 10, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #f1730a;
+  }
+  
+  .service-detail-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+  .service-detail-content li {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+      padding: 15px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(241, 115, 10, 0.1);
+  }
+  
+  .service-detail-content li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #f1730a;
+      border-radius: 0 2px 2px 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+  
+  .service-detail-content li:hover {
+      background: rgba(241, 115, 10, 0.08);
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(241, 115, 10, 0.15);
+  }
+  
+  .service-detail-content li:hover::before {
+      opacity: 1;
+  }
+  
+  .service-detail-content .bi {
+      color: #f1730a;
+      font-size: 1.4rem;
+      margin-right: 15px;
+      margin-top: 2px;
+      min-width: 20px;
+  }
+  
+  /* Tags de especialidades */
+  .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+  }
+  
+  .service-tag {
+      background: linear-gradient(45deg, #f1730a, #d65a00);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+  }
+  
+  .service-tag:hover {
+      transform: scale(1.05);
+  }
+  
+  .cta-section {
+      background: linear-gradient(135deg, #f0f2f5, #e8ecf0);
+      padding: 100px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(241, 115, 10, 0.05) 0%, transparent 50%);
+      animation: pulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.3; }
+  }
+  
+  .cta-content {
+      position: relative;
+      z-index: 2;
+  }
+  
+  .cta-section h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #111;
+  }
+  .cta-section p {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+  }
+  .btn-cta {
+      display: inline-block;
+      background: linear-gradient(45deg, #f1730a, #d65a00);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.4s ease;
+      box-shadow: 0 15px 35px rgba(241, 115, 10, 0.3);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  .btn-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+  }
+  
+  .btn-cta:hover::before {
+      left: 100%;
+  }
+  
+  .btn-cta:hover {
+      background: linear-gradient(45deg, #d65a00, #f1730a);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(241, 115, 10, 0.4);
+      color: white;
+      text-decoration: none;
+  }
+
+
+  /* =================================================================
+     RESPONSIVE DESIGN
+     ================================================================= */
+  @media (max-width: 992px) {
+      .service-detail-item, .service-detail-item:nth-child(even) {
+          flex-direction: column;
+          text-align: center;
+          gap: 40px;
+      }
+      .service-detail-content h2 {
+          display: block;
+      }
+      .stats-container {
+          grid-template-columns: repeat(2, 1fr);
+      }
+      .service-detail-content {
+          padding: 40px;
+      }
+  }
+  @media (max-width: 768px) {
+      .service-hero, .cta-section, .service-detail-section { padding: 80px 15px; }
+      .hero-content h1, .cta-section h2 { font-size: 36px; }
+      .section-header h2 { font-size: 32px; }
+      .hero-content p, .cta-section p { font-size: 18px; }
+      .service-detail-content { padding: 30px; }
+      .service-detail-content h2 { font-size: 28px; }
+      .footer-content, .footer-section { text-align: center; }
+      .social-icons { justify-content: center; }
+      .stats-container {
+          grid-template-columns: 1fr;
+      }
+      .service-tags {
+          justify-content: center;
+      }
+  }
+</style>
+<body>
+    <div id="header"></div>
+
+     <!-- Sección de Detalles de Servicios -->
+     <section class="service-detail-section">
+      <div class="section-header">
+          <h2>Nuestras Especialidades</h2>
+          <p>Ofrecemos un amplio portafolio de servicios especializados para satisfacer las necesidades más exigentes del sector construcción e infraestructura.</p>
+      </div>
+      
+      <div class="container">
+          <!-- Servicio 1: Construcción (Contenido Actualizado) -->
+          <div class="service-detail-item" id="construccion">
+              <div class="service-detail-image">
+                  <div class="service-number">01</div>
+                  <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/01_ser.jpg" alt="Construcción y Ejecución">
+              </div>
+              <div class="service-detail-content">
+                  <h2>Construcción y Ejecución</h2>
+                  <div class="service-description">
+                      Ejecutamos obras civiles integrales al servicio de entidades públicas y privadas, desde edificaciones residenciales hasta complejas obras de infraestructura, manejando proyectos por Licitación Pública o Adjudicación Directa.
+                  </div>
+                  <ul>
+                      <li><i class="bi bi-buildings-fill"></i> <strong>Edificaciones:</strong> Locales comerciales, edificios, viviendas, hospitales e instituciones educativas con estándares de calidad superior.</li>
+                      <li><i class="bi bi-geo-alt-fill"></i> <strong>Obras Urbanas:</strong> Pavimentación de pistas, veredas, losas deportivas, mercados y parques que transforman comunidades.</li>
+                      <li><i class="bi bi-droplet-fill"></i> <strong>Saneamiento:</strong> Sistemas integrales de agua potable y alcantarillado en áreas urbanas y rurales.</li>
+                      <li><i class="bi bi-signpost-fill"></i> <strong>Obras Viales:</strong> Creación y mejoramiento de carreteras, puentes y túneles con tecnología de vanguardia.</li>
+                      <li><i class="bi bi-water"></i> <strong>Obras Hidráulicas:</strong> Presas, canales de riego, reservorios y embarcaderos de alta eficiencia.</li>
+                      <li><i class="bi bi-lightning-charge-fill"></i> <strong>Electromecánicas:</strong> Sistemas de redes primarias y secundarias con tecnología moderna.</li>
+                  </ul>
+                  
+              </div>
+          </div>
+
+          <!-- Servicio 2: Consultoría (Contenido Actualizado) -->
+          <div class="service-detail-item" id="consultoria">
+              <div class="service-detail-image">
+                  <div class="service-number">02</div>
+                  <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/02_ser.jpg" alt="Consultoría Especializada">
+              </div>
+              <div class="service-detail-content">
+                  <h2>Consultoría Especializada</h2>
+                  <div class="service-description">
+                      Brindamos dirección técnica y seguimiento continuo en todas las etapas del proyecto (inicio, planificación, ejecución, control y cierre), asegurando entregas limpias y resultados excepcionales.
+                  </div>
+                  <ul>
+                      <li><i class="bi bi-droplet-half"></i> <strong>Saneamiento y Afines:</strong> Consultoría especializada en sistemas de agua potable, alcantarillado y tratamiento.</li>
+                      <li><i class="bi bi-building-gear"></i> <strong>Obras Urbanas y Edificaciones:</strong> Asesoramiento integral en desarrollo urbano y arquitectónico.</li>
+                      <li><i class="bi bi-water"></i> <strong>Represas e Irrigaciones:</strong> Consultoría en proyectos hidráulicos de gran envergadura y sistemas de riego.</li>
+                      <li><i class="bi bi-truck"></i> <strong>Obras Viales y Portuarias:</strong> Especialistas en infraestructura de transporte y desarrollo portuario.</li>
+                      <li><i class="bi bi-gear-wide-connected"></i> <strong>Electromecánicas y Energéticas:</strong> Consultoría en sistemas eléctricos y proyectos energéticos.</li>
+                  </ul>
+                 
+              </div>
+          </div>
+
+          <!-- Servicio 3: Servicios (Contenido Actualizado) -->
+          <div class="service-detail-item" id="mantenimiento">
+              <div class="service-detail-image">
+                  <div class="service-number">03</div>
+                  <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/03_ser.jpg" alt="Servicios Complementarios">
+              </div>
+              <div class="service-detail-content">
+                  <h2>Servicios</h2>
+                  <div class="service-description">
+                      Garantizamos la longevidad y rendimiento óptimo de tus infraestructuras con servicios de mantenimiento preventivo, correctivo y periódico, respaldados por tecnología avanzada.
+                  </div>
+                  <ul>
+                      <li><i class="bi bi-tools"></i> <strong>Mantenimiento Vial:</strong> Servicios preventivos y correctivos para caminos vecinales y carreteras principales.</li>
+                      <li><i class="bi bi-calendar-check"></i> <strong>Mantenimiento Rutinario:</strong> Programas de mantenimiento periódico con cronogramas personalizados.</li>
+                      <li><i class="bi bi-truck-front"></i> <strong>Alquiler de Maquinaria:</strong> Fleet completo de maquinaria especializada con operadores certificados.</li>
+                      <li><i class="bi bi-headset"></i> <strong>Soporte Técnico:</strong> Asistencia técnica y logística en campo las 24 horas del día.</li>
+                  </ul>
+                  
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Sección de Llamada a la Acción (CTA) -->
+  <section class="cta-section">
+      <div class="cta-content">
+          <h2>¿Listo para Transformar tu Proyecto?</h2>
+          <p>Nuestro equipo de expertos está preparado para asesorarte y ofrecerte la mejor solución personalizada. Juntos haremos realidad tus ideas más ambiciosas.</p>
+          <a href="index.html#contacto" class="btn-cta">
+              <i class="bi bi-chat-dots-fill" style="margin-right: 10px;"></i>
+              Solicitar Cotización
+          </a>
+      </div>
+  </section>
+</main>
+
+    
+    <div id="footer"></div>
+
+    <script>
+        fetch("header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+          });
+      </script>
+     <script>
+        fetch("footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

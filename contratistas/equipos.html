@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos</title>
+    <link rel="icon" href="img/icon.jpg" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<style>
+   .equipment-hero { background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); color: white; padding: 80px 20px; text-align: center; }
+.equipment-hero-content h1 { font-size: 48px; font-weight: 700; margin-bottom: 10px; }
+.equipment-hero-content p { font-size: 20px; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+/* --- NUEVO: Estilos para Filtros --- */
+.equipment-filters {
+    padding: 40px 20px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.filter-btn {
+    background-color: #fff;
+    color: #555;
+    border: 2px solid #ddd;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.filter-btn:hover {
+    background-color: #e9ecef;
+    border-color: #ccc;
+}
+.filter-btn.active {
+    background-color: #f1730a;
+    color: white;
+    border-color: #f1730a;
+    box-shadow: 0 4px 15px rgba(241, 115, 10, 0.3);
+}
+
+.equipment-gallery { padding: 80px 20px; background-color: #f4f4f4; }
+.equipment-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+.equipment-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.equipment-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+.equipment-card-image img { width: 100%; height: 220px; object-fit: cover; }
+.equipment-card-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+.equipment-card-content h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+.equipment-card-content p { color: #555; flex-grow: 1; margin-bottom: 20px; }
+.btn-quote { display: inline-block; background-color: #f1730a; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; text-align: center; transition: background-color 0.3s ease; border: none; cursor: pointer; }
+.btn-quote:hover { background-color: #d65a00; color: white; text-decoration: none; }
+.loading-spinner { border: 5px solid #f3f3f3; border-top: 5px solid #f1730a; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 50px auto; }
+.no-results { font-size: 18px; color: #666; grid-column: 1 / -1; text-align: center; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* =================================================================
+   MODAL DE COTIZACIÓN
+   ================================================================= */
+.modal-content { background-color: #f8f9fa; border-radius: 15px; border: none; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+.modal-header { background-color: #f1730a; color: white; border-bottom: none; border-top-left-radius: 14px; border-top-right-radius: 14px; }
+.modal-header .close { color: white; text-shadow: none; opacity: 0.9; font-size: 1.8rem; }
+.modal-title { font-weight: 600; font-size: 1.4rem; }
+.modal-body { padding: 2rem; color: #333; }
+.modal-body .form-group label { font-weight: 600; color: #555; }
+.modal-body .form-control { background-color: #e9ecef; border: 1px solid #ced4da; color: #495057; border-radius: 8px; padding: 12px 15px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.modal-body .form-control:focus { background-color: #fff; border-color: #f1730a; box-shadow: 0 0 0 0.2rem rgba(241, 115, 10, 0.25); color: #495057; }
+.modal-footer { border-top: 1px solid #dee2e6; padding: 1rem 2rem; }
+.btn-modal-send { background-color: #f1730a; color: white; border: none; font-weight: 600; padding: 10px 25px; border-radius: 50px; transition: background-color 0.3s ease, transform 0.3s ease; }
+.btn-modal-send:hover { background-color: #d65a00; transform: translateY(-2px); }
+
+/* =================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+@media (max-width: 992px) {
+    .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+    .services-section, .portfolio-section, .contact-section, .equipment-gallery { padding: 60px 15px; }
+    .equipment-hero { padding: 60px 15px; }
+    .contact-section h2, .equipment-hero-content h1 { font-size: 32px; }
+    .contact-section p, .equipment-hero-content p { font-size: 16px; }
+    .contact-form, .map-container { padding: 30px 20px; }
+    .footer-content, .footer-section { text-align: center; }
+    .social-icons { justify-content: center; }
+}
+
+
+</style>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <!-- Encabezado dinámico de la página -->
+        <section class="equipment-hero">
+            <div class="equipment-hero-content">
+                <h1 id="equipment-title">Nuestro Porfolio de Equipos</h1>
+                <p id="equipment-subtitle">Explora nuestra moderna flota de maquinaria pesada y liviana.</p>
+            </div>
+        </section>
+
+        <!-- NUEVO: Filtros de Categoría -->
+        <section class="equipment-filters">
+            <div class="filter-container">
+                <button class="filter-btn" data-category="all">Mostrar Todos</button>
+                <button class="filter-btn" data-category="pesada">Maquinaria Pesada</button>
+                <button class="filter-btn" data-category="liviana">Maquinaria Liviana</button>
+            </div>
+        </section>
+
+        <!-- Galería de Equipos -->
+        <section class="equipment-gallery">
+            <div id="equipment-grid" class="equipment-grid">
+                <!-- Las tarjetas de equipos se insertarán aquí dinámicamente -->
+                <div class="loading-spinner"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contenedor para el Footer -->
+    <div id="footer"></div>
+
+    <!-- =================================================================
+       MODAL PARA COTIZACIONES
+       ================================================================= -->
+    <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quoteModalLabel">Cotizar Equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://formspree.io/f/mvgwzjwk" method="POST" id="quoteForm">
+                        <input type="hidden" id="equipmentNameInput" name="equipment_name">
+                        
+                        <div class="form-group">
+                            <label for="quoteName">Nombre Completo</label>
+                            <input type="text" class="form-control" id="quoteName" name="nombre" placeholder="Ingresa tu nombre" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quoteEmail">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="quoteEmail" name="email" placeholder="ejemplo@correo.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quoteMessage">Mensaje</label>
+                            <textarea class="form-control" id="quoteMessage" name="mensaje" rows="4" required></textarea>
+                        </div>
+                  
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-modal-send">Enviar Cotización</button>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Scripts de Bootstrap y JS principal -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+        crossorigin="anonymous"></script>
+
+<script src="script.js"></script>
+
+<!-- Script para cargar y filtrar equipos dinámicamente -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Base de Datos de Equipos ---
+    const allEquipment = [
+        { id: 1, name: "Excavadora 320D", category: "pesada", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/excavadora320D.jpg", description: "Potente y versátil, ideal para movimientos de tierra a gran escala." },
+        { id: 2, name: "Cargador Frontal 950H", category: "pesada", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/CargadorFrontal950H.jpg", description: "Alta capacidad de carga y eficiencia para proyectos de construcción y minería." },
+        { id: 3, name: "Volquete 777G", category: "pesada", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/Volquete777G.jpeg", description: "Robusto y fiable para el transporte de materiales en condiciones exigentes." },
+        { id: 4, name: "Retroexcavadora 420F", category: "pesada", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/Retroexcavadora420F.jpg", description: "Flexibilidad y rendimiento para excavación y carga en una sola máquina." },
+        { id: 5, name: "Compactadora Vibratoria", category: "liviana", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/Compactadora Vibratoria.jpg", description: "Perfecta para la compactación de suelos y asfalto en áreas pequeñas y medianas." },
+        { id: 6, name: "Generador Eléctrico", category: "liviana", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/generadorElectrico.jpg", description: "Suministro de energía fiable y continuo para herramientas y equipos en obra." },
+        { id: 7, name: "Motobomba de Agua", category: "liviana", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/MotobombaAgua.jpg", description: "Ideal para drenaje, irrigación y movimiento de grandes volúmenes de agua." },
+        { id: 8, name: "Compresor de Aire", category: "liviana", image: "https://raw.githubusercontent.com/resources-lab/CIMG/main/compresor.jpg", description: "Potencia neumática para una amplia gama de herramientas generadorElectrico.jpgy aplicaciones." },
+    ];
+
+    const grid = document.getElementById('equipment-grid');
+    const title = document.getElementById('equipment-title');
+    const subtitle = document.getElementById('equipment-subtitle');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    // --- Función para renderizar equipos ---
+    function renderEquipment(category) {
+        let filteredEquipment;
+
+        if (category === 'pesada') {
+            filteredEquipment = allEquipment.filter(eq => eq.category === 'pesada');
+            title.textContent = "Maquinaria Pesada";
+            subtitle.textContent = "Equipos de gran tonelaje para proyectos de construcción y minería.";
+        } else if (category === 'liviana') {
+            filteredEquipment = allEquipment.filter(eq => eq.category === 'liviana');
+            title.textContent = "Maquinaria Liviana";
+            subtitle.textContent = "Herramientas especializadas para trabajos de precisión y soporte en obra.";
+        } else {
+            filteredEquipment = allEquipment;
+            title.textContent = "Nuestro Porfolio de Equipos";
+            subtitle.textContent = "Explora nuestra moderna flota de maquinaria pesada y liviana.";
+        }
+
+        filterButtons.forEach(button => {
+            button.classList.toggle('active', button.dataset.category === category);
+        });
+
+        grid.innerHTML = ''; 
+        if (filteredEquipment.length > 0) {
+            filteredEquipment.forEach(eq => {
+                const card = document.createElement('div');
+                card.className = 'equipment-card';
+                card.innerHTML = `
+                    <div class="equipment-card-image">
+                        <img src="${eq.image}" alt="${eq.name}">
+                    </div>
+                    <div class="equipment-card-content">
+                        <h3>${eq.name}</h3>
+                        <p>${eq.description}</p>
+                        <button class="btn-quote" data-toggle="modal" data-target="#quoteModal" data-equipment="${eq.name}">
+                            Cotizar Equipo
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        } else {
+            grid.innerHTML = '<p class="no-results">No se encontraron equipos en esta categoría.</p>';
+        }
+
+        // Re-inicializar animaciones sin duplicar
+        setTimeout(() => {
+            const newCards = document.querySelectorAll('.equipment-card');
+            newCards.forEach(card => {
+                if (!card.classList.contains('animate')) {
+                    observer.observe(card);
+                }
+            });
+        }, 100);
+    }
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.dataset.category;
+            renderEquipment(category);
+        });
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const initialCategory = params.get('categoria') || 'all';
+    renderEquipment(initialCategory);
+
+    // --- Modal ---
+    $('#quoteModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var equipmentName = button.data('equipment');
+    var modal = $(this);
+
+    modal.find('.modal-title').text('Cotizar: ' + equipmentName);
+    modal.find('#equipmentNameInput').val(equipmentName);
+    modal.find('#quoteMessage').val(
+      'Hola, estoy interesado/a en cotizar el siguiente equipo: ' + equipmentName + '.'
+    );
+});
+
+});
+</script>
+
+<!-- Footer dinámico -->
+<div id="footer"></div>
+<script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

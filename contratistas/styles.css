@@ -1,0 +1,698 @@
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Figtree', Arial, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #000000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    /* Logo */
+    .logo img {
+      height: 40px;
+      transition: height 0.3s ease;
+    }
+
+    /* Menú Desktop */
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 12px 30px;
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s, font-size 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: #f1730a;
+    }
+
+    /* Contacto */
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .phone {
+      color: white;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: font-size 0.3s ease;
+    }
+
+    .phone {
+      text-decoration: none;
+      color: #ffffff; /* color del texto */
+    }
+    
+    .phone i {
+      margin-right: 8px;   /* separación del ícono */
+      color: #f1730a;      /* color naranja de tu página */
+      font-size: 0.9rem;   /* tamaño del ícono */
+    }
+    
+
+    .btn-contact {
+      background: #f79648;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 10px;
+      text-decoration: none;     /* quita subrayado */
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+      transition: background 0.3s, font-size 0.3s ease, padding 0.3s ease;
+      white-space: nowrap;
+      display: inline-block;     /* hace que se comporte más como botón */
+    }
+    
+    /* Hover */
+    .btn-contact:hover {
+      background: #f1730a;
+      color: black;              /* asegura que no cambie el color del texto */
+      text-decoration: none;     /* evita subrayado en hover */
+    }
+    
+    /* Focus y Active (cuando das clic) */
+    .btn-contact:focus,
+    .btn-contact:active {
+      outline: none;             /* quita borde azul */
+      box-shadow: none;          /* quita resplandor azul */
+      color: black;
+      text-decoration: none;
+    }
+    
+
+    /* Botón Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Menú Mobile */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #24282d;
+      flex-direction: column;
+      padding: 20px 40px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: #f1730a;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* Media Queries */
+    
+    /* Tablet (768px - 481px) */
+    @media (max-width: 900px){
+      .navbar {
+        padding: 10px 30px;
+      }
+
+      .logo img {
+        height: 33px;
+      }
+
+      .nav-links {
+        gap: 16px;
+        padding: 10px 16px;
+      }
+
+      .nav-links a {
+        font-size: 14px;
+      }
+
+      .phone {
+        display: none;
+      }
+
+      .btn-contact {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+
+    /* Mobile (480px y menos) */
+    @media (max-width: 650px) {
+      .navbar {
+        padding: 12px 20px;
+      }
+
+      .logo img {
+        height: 30px;
+      }
+
+      .nav-links {
+        display: none;
+        gap: 16px;
+        padding: 10px 16px;
+      }
+
+      .hamburger {
+        display: flex;
+        order: 1;
+      }
+
+      .contact {
+        gap: 10px;
+        order: 2;
+        display: flex;
+        align-items: center;
+      }
+
+      .phone {
+        display: none;
+      }
+
+      .btn-contact {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+    }
+
+    /* Mobile pequeño (320px y menos) */
+
+    @media (max-width: 540px) {
+      .navbar {
+        padding: 10px 15px;
+      }
+
+      .logo img {
+        height: 28px;
+      }
+
+      .mobile-menu {
+        padding: 15px 20px;
+      }
+    }
+
+    /* Animación suave para el menú */
+    .mobile-menu {
+      transition: all 0.3s ease-in-out;
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+
+    .carousel-img {
+        height: 200px; /* Cambia por la altura que necesites */
+    }
+
+/* Styles our services */
+/* Styles our services */
+.services-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+/* 🎯 ANIMACIÓN ÚNICA - Sin conflictos */
+@keyframes fadeUp {
+  from {
+      opacity: 0;
+      transform: translateY(40px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* ✅ ESTADOS INICIALES - SIN TRANSICIONES CONFLICTIVAS */
+.services-section h2,
+.services-section p,
+.service-box {
+  opacity: 0;
+  transform: translateY(40px);
+  /* ❌ REMOVIDO: transition que causaba conflicto */
+}
+
+/* 🎯 ANIMACIONES ACTIVADAS - Solo cuando JS agrega .animate */
+.services-section h2.animate {
+  animation: fadeUp 1s ease forwards;
+}
+
+.services-section p.animate {
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.service-box.animate {
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Diferentes delays para cada service-box */
+.service-box:nth-child(1).animate {
+  animation-delay: 0.6s;
+}
+.service-box:nth-child(2).animate {
+  animation-delay: 0.9s;
+}
+.service-box:nth-child(3).animate {
+  animation-delay: 1.2s;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.service-box {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 300px;
+  padding: 20px;
+  text-align: left;
+  /* ✅ TRANSICIÓN SOLO PARA HOVER - No interfiere con la animación */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.service-box img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.service-number {
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1730a;
+  margin-bottom: 10px;
+}
+
+.service-box h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.service-box p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+}
+
+/* 🛡️ PREVENCIÓN EXTRA: Asegurar que elementos animados mantengan estado final */
+.services-section h2.animate,
+.services-section p.animate,
+.service-box.animate {
+  /* Forzar estado final después de la animación */
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+
+
+  /* Styles portfolio */
+/* SECCIÓN PORTFOLIO DE EQUIPOS */
+.portfolio-section {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f8f9fa; /* Fondo gris claro para diferenciarlo */
+}
+
+/* ✅ ESTADOS INICIALES - SIN TRANSICIONES CONFLICTIVAS */
+.portfolio-section h2,
+.portfolio-section p,
+.portfolio-item {
+  opacity: 0;
+  transform: translateY(40px);
+  /* ❌ REMOVIDO: transition: all 0.6s ease; que causaba conflicto */
+}
+
+/* 🎯 ANIMACIONES CUANDO SON VISIBLES - Solo animation, no transition */
+.portfolio-section h2.animate {
+  animation: fadeUp 1s ease forwards;
+}
+
+.portfolio-section p.animate {
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.portfolio-item.animate {
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Delays escalonados para los items */
+.portfolio-item:nth-child(1).animate {
+  animation-delay: 0.6s;
+}
+.portfolio-item:nth-child(2).animate {
+  animation-delay: 0.9s;
+}
+
+/* Estilos del título */
+.portfolio-section h2 {
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.portfolio-section p {
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Container de los items */
+.portfolio-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+/* Cada item del portfolio */
+.portfolio-item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 300px;
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  /* ✅ TRANSICIONES SOLO PARA HOVER - No interfieren con animación */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Imagen del portfolio */
+.portfolio-item img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Título del item */
+.portfolio-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #111;
+  font-weight: normal;
+}
+
+/* Descripción */
+.portfolio-description {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Badge/etiqueta con color principal */
+.portfolio-badge {
+  display: inline-block;
+  background-color: #f1730a;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Icono de flecha */
+.portfolio-arrow {
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+  color: #f1730a;
+}
+
+.portfolio-item:hover .portfolio-arrow {
+  transform: translateX(5px);
+}
+
+/* 🛡️ PREVENCIÓN EXTRA: Asegurar estado final después de animación */
+.portfolio-section h2.animate,
+.portfolio-section p.animate,
+.portfolio-item.animate {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+
+  /* Styles contacto */
+  .contact-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #f1730a 0%, #d65a00 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.8" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+/* Estados iniciales para animaciones */
+.contact-section h2, .contact-section p, .contact-grid > *,
+.services-section h2, .services-section > p, .service-box, .portfolio-section h2,
+.portfolio-section > p, .portfolio-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+
+/* Estado final de las animaciones */
+.contact-section h2.animate, .contact-section p.animate, .contact-grid > *.animate,
+.services-section h2.animate, .services-section > p.animate, .service-box.animate, .portfolio-section h2.animate,
+.portfolio-section > p.animate, .portfolio-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* AJUSTE: Nuevos retardos para la animación */
+.contact-section h2.animate { transition-delay: 0.1s; }
+.contact-section p.animate { transition-delay: 0.2s; }
+.contact-form.animate { transition-delay: 0.3s; }
+.map-container.animate { transition-delay: 0.4s; }
+
+.contact-section h2 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.contact-section p {
+    font-size: 20px;
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CAMBIO: La cuadrícula ahora posiciona el formulario y el mapa uno al lado del otro */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start; /* Alinea los items al inicio */
+}
+
+/* Estilos compartidos para las tarjetas de formulario y mapa */
+.contact-form, .map-container {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: 100%; /* Hacen que ambas tarjetas tengan la misma altura */
+}
+.contact-form:hover, .map-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.2);
+}
+.contact-form h3, .map-container h3 {
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-align: left;
+}
+.map-embed {
+    width: 100%;
+    height: calc(100% - 60px); /* Ajusta la altura del mapa para que quepa en la tarjeta */
+    min-height: 350px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+.form-group input, .form-group textarea { width: 100%; padding: 15px; border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; background: rgba(255,255,255,0.2); color: white; font-size: 15px; transition: all 0.3s ease; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.7); }
+.form-group input:focus, .form-group textarea:focus { outline: none; background: rgba(255,255,255,0.3); border-color: rgba(255,255,255,0.5); box-shadow: 0 0 0 3px rgba(255,255,255,0.1); }
+.submit-btn { width: 100%; padding: 18px; background: white; color: #f1730a; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); background: #f8f9fa; }
+
+/* =================================================================
+   FOOTER (AJUSTADO A LA NUEVA ESTRUCTURA)
+   ================================================================= */
+.footer {
+    background-color: #121212;
+    color: #a0a0a0;
+    padding: 60px 20px 20px;
+}
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Columnas flexibles */
+    gap: 40px;
+    text-align: left;
+}
+.footer-section h3 {
+    color: #f1730a;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.footer-section p, .footer-section a {
+    color: #a0a0a0;
+    text-decoration: none;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease;
+}
+.footer-section a:hover { color: #f1730a; }
+.footer-section .bi { /* Iconos de Bootstrap */
+    margin-right: 8px; 
+    color: #f1730a;
+    vertical-align: middle;
+}
+.social-icons { display: flex; gap: 15px; margin-top: 20px; }
+.social-icon {
+    width: 40px; height: 40px; background: #333; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px; text-decoration: none; transition: all 0.3s ease;
+}
+.social-icon:hover { background: #f1730a; transform: translateY(-4px); }
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
+
+/* =================================================================
+   RESPONSIVE DESIGN
+   ================================================================= */
+@media (max-width: 992px) {
+    /* CAMBIO: En tablets y móviles, apila el formulario y el mapa en una sola columna */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .contact-section { padding: 60px 15px; }
+    .contact-section h2 { font-size: 32px; }
+    .contact-section p { font-size: 16px; }
+    .contact-form, .map-container { padding: 30px 20px; }
+    .footer-content { text-align: center; }
+    .footer-section { text-align: center; }
+    .social-icons { justify-content: center; }
+}
+

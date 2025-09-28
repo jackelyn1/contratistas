@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros</title>
+    <link rel="icon" href="img/icon.jpg" type="image/png">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+
+
+        <style>
+          /* --- Hero Section --- */
+          .about-hero {
+              background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1470&auto=format&fit=crop') no-repeat center center;
+              background-size: cover;
+              color: white;
+              padding: 120px 20px;
+              text-align: center;
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .about-hero::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(45deg, rgba(241, 115, 10, 0.1), rgba(214, 90, 0, 0.1));
+              z-index: 1;
+          }
+  
+          .hero-content {
+              position: relative;
+              z-index: 2;
+          }
+          
+          .hero-content h1 {
+              font-size: 52px;
+              font-weight: 700;
+              margin-bottom: 20px;
+              text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          }
+          .hero-content p {
+              font-size: 22px;
+              color: #f0f0f0;
+              max-width: 800px;
+              margin: 0 auto;
+          }
+  
+          /* --- Estilos comunes de sección --- */
+          .page-section {
+              padding: 80px 20px;
+          }
+          .section-title {
+              font-size: 42px;
+              font-weight: 700;
+              color: #111;
+              margin-bottom: 20px;
+              position: relative;
+              text-align: center;
+          }
+          .section-title::after {
+              content: '';
+              position: absolute;
+              bottom: -10px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 60px;
+              height: 4px;
+              background: #f1730a;
+              border-radius: 2px;
+          }
+          .section-subtitle {
+              font-size: 18px;
+              color: #666;
+              max-width: 700px;
+              margin: 0 auto 30px auto;
+              text-align: center;
+          }
+  
+          /* --- Presentation Section con imagen --- */
+          .presentation-section {
+              background-color: #fff;
+              position: relative;
+          }
+  
+          .presentation-container {
+              max-width: 1200px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 60px;
+              align-items: center;
+          }
+  
+          .presentation-content {
+              font-size: 18px;
+              line-height: 1.8;
+              color: #555;
+          }
+  
+          .presentation-image {
+              position: relative;
+              border-radius: 20px;
+              overflow: hidden;
+              box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          }
+  
+          .presentation-image img {
+              width: 100%;
+              height: 400px;
+              object-fit: cover;
+              transition: transform 0.5s ease;
+          }
+  
+          .presentation-image:hover img {
+              transform: scale(1.05);
+          }
+  
+          .presentation-badge {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              background: linear-gradient(45deg, #f1730a, #d65a00);
+              color: white;
+              padding: 12px 24px;
+              border-radius: 25px;
+              font-weight: 600;
+              font-size: 14px;
+              box-shadow: 0 8px 16px rgba(241, 115, 10, 0.3);
+          }
+          
+          /* --- History Section mejorada con imágenes --- */
+          .history-section {
+              background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+          }
+  
+          .history-section .container {
+              max-width: 1200px;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 50px;
+              align-items: center;
+              margin: 0 auto;
+          }
+  
+          .history-content h3 {
+              font-size: 28px;
+              font-weight: 600;
+              color: #f1730a;
+              margin-bottom: 20px;
+          }
+          .history-content p {
+              font-size: 16px;
+              color: #555;
+              line-height: 1.7;
+          }
+  
+          .history-quote {
+              background: linear-gradient(135deg, #f1730a, #d65a00);
+              color: white;
+              padding: 30px;
+              border-radius: 15px;
+              font-size: 20px;
+              font-weight: 500;
+              text-align: center;
+              box-shadow: 0 15px 30px rgba(241, 115, 10, 0.3);
+              margin-bottom: 30px;
+              position: relative;
+          }
+  
+          .history-quote::before {
+              content: '"';
+              position: absolute;
+              top: -10px;
+              left: 20px;
+              font-size: 60px;
+              opacity: 0.3;
+          }
+  
+          .history-image {
+              position: relative;
+              border-radius: 20px;
+              overflow: hidden;
+              box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          }
+  
+          .history-image img {
+              width: 100%;
+              height: 400px;
+              object-fit: cover;
+              transition: transform 0.5s ease;
+          }
+  
+          .history-image:hover img {
+              transform: scale(1.05);
+          }
+  
+          /* --- Mission & Vision Section con iconos mejorados --- */
+          .mission-vision-section {
+              background-color: #fff;
+              position: relative;
+          }
+  
+          .mission-vision-section::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 2px;
+              background: linear-gradient(90deg, transparent, #f1730a, transparent);
+          }
+  
+          .mv-container {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 40px;
+              max-width: 1200px;
+              margin: 0 auto;
+          }
+  
+          .mv-card {
+              background: linear-gradient(145deg, #ffffff, #f8f9fa);
+              padding: 40px;
+              border-radius: 20px;
+              box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+              border: 1px solid #eee;
+              transition: all 0.3s ease;
+              text-align: center;
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .mv-card::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 4px;
+              background: linear-gradient(90deg, #f1730a, #d65a00);
+              transform: scaleX(0);
+              transition: transform 0.3s ease;
+          }
+  
+          .mv-card:hover::before {
+              transform: scaleX(1);
+          }
+  
+          .mv-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 30px 50px rgba(0,0,0,0.12);
+          }
+  
+          .mv-card .icon {
+              font-size: 50px;
+              color: #f1730a;
+              margin-bottom: 20px;
+              transition: transform 0.3s ease;
+          }
+  
+          .mv-card:hover .icon {
+              transform: scale(1.1);
+          }
+  
+          .mv-card h3 {
+              font-size: 28px;
+              font-weight: 600;
+              margin-bottom: 15px;
+              color: #111;
+          }
+  
+          .mv-card p {
+              font-size: 16px;
+              color: #555;
+              line-height: 1.6;
+          }
+  
+          /* --- Stats Section NUEVA --- */
+          .stats-section {
+              background: linear-gradient(135deg, #f1730a, #d65a00);
+              color: white;
+              padding: 60px 20px;
+              text-align: center;
+          }
+  
+          .stats-container {
+              max-width: 1000px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 40px;
+          }
+  
+          .stat-item {
+              text-align: center;
+          }
+  
+          .stat-number {
+              font-size: 48px;
+              font-weight: 700;
+              margin-bottom: 10px;
+              display: block;
+          }
+  
+          .stat-label {
+              font-size: 16px;
+              opacity: 0.9;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+          }
+  
+          /* --- Team Section NUEVA --- */
+          .team-section {
+              background-color: #f8f9fa;
+          }
+  
+          .team-grid {
+              max-width: 1200px;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 30px;
+          }
+  
+          .team-member {
+              background: white;
+              border-radius: 15px;
+              overflow: hidden;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+              transition: all 0.3s ease;
+          }
+  
+          .team-member:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+          }
+  
+          .team-photo {
+              width: 100%;
+              height: 250px;
+              background: linear-gradient(45deg, #f1730a, #d65a00);
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .team-photo img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }
+  
+          .team-info {
+              padding: 25px;
+              text-align: center;
+          }
+  
+          .team-name {
+              font-size: 22px;
+              font-weight: 600;
+              color: #111;
+              margin-bottom: 8px;
+          }
+  
+          .team-role {
+              color: #f1730a;
+              font-weight: 500;
+              margin-bottom: 15px;
+          }
+  
+          .team-description {
+              color: #666;
+              font-size: 14px;
+              line-height: 1.5;
+          }
+  
+          /* --- Org Chart Section MEJORADA --- */
+          .org-chart-section {
+              text-align: center;
+              background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+          }
+          
+          .org-chart {
+              max-width: 1200px;
+              margin: 0 auto;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 30px;
+          }
+          
+          .org-level {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 40px;
+              position: relative;
+              flex-wrap: wrap;
+          }
+          
+          .org-box {
+              background: linear-gradient(135deg, #f1730a, #d65a00);
+              color: white;
+              padding: 20px 30px;
+              border-radius: 12px;
+              box-shadow: 0 8px 25px rgba(241, 115, 10, 0.3);
+              min-width: 200px;
+              text-align: center;
+              transition: all 0.3s ease;
+              font-weight: 600;
+              position: relative;
+              overflow: hidden;
+          }
+  
+          .org-box::before {
+              content: '';
+              position: absolute;
+              top: -50%;
+              left: -50%;
+              width: 200%;
+              height: 200%;
+              background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+              transform: scale(0);
+              transition: transform 0.5s ease;
+          }
+  
+          .org-box:hover::before {
+              transform: scale(1);
+          }
+          
+          .org-box:hover {
+              transform: translateY(-5px) scale(1.05);
+              box-shadow: 0 15px 35px rgba(241, 115, 10, 0.4);
+          }
+          
+          .org-box h4 {
+              font-size: 16px;
+              font-weight: 600;
+              margin: 0;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+              position: relative;
+              z-index: 1;
+          }
+          
+          .org-gerencia {
+              background: linear-gradient(135deg, #d65a00, #b8490a);
+              font-size: 18px;
+              padding: 25px 35px;
+              min-width: 250px;
+              border-radius: 15px;
+          }
+          
+          .org-connector {
+              width: 4px;
+              height: 30px;
+              background: linear-gradient(180deg, #f1730a, #d65a00);
+              border-radius: 2px;
+              margin: 0 auto;
+          }
+          
+          .org-level-2 {
+              position: relative;
+          }
+          
+          .org-level-2::before {
+              content: '';
+              position: absolute;
+              top: -18px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 70%;
+              height: 4px;
+              background: linear-gradient(90deg, transparent, #f1730a, transparent);
+              border-radius: 2px;
+              z-index: -1;
+          }
+          
+          .org-sub-connector {
+              width: 3px;
+              height: 25px;
+              background: linear-gradient(180deg, #ff8533, #ff6600);
+              border-radius: 2px;
+              margin: 0 auto;
+          }
+          
+          .org-sub-level {
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              flex-wrap: wrap;
+              margin-top: 15px;
+          }
+          
+          .org-sub-box {
+              background: linear-gradient(135deg, #ff8533, #ff6600);
+              color: white;
+              padding: 15px 25px;
+              border-radius: 10px;
+              box-shadow: 0 6px 15px rgba(255, 133, 51, 0.3);
+              min-width: 160px;
+              text-align: center;
+              transition: all 0.3s ease;
+              font-weight: 500;
+          }
+          
+          .org-sub-box:hover {
+              transform: translateY(-3px) scale(1.02);
+              box-shadow: 0 10px 25px rgba(255, 133, 51, 0.4);
+          }
+          
+          .org-sub-box h5 {
+              font-size: 14px;
+              font-weight: 500;
+              margin: 0;
+              text-transform: uppercase;
+          }
+  
+          /* --- CTA Section --- */
+          .cta-section {
+              background: linear-gradient(135deg, #111 0%, #333 100%);
+              padding: 80px 20px;
+              text-align: center;
+              color: white;
+          }
+  
+          .cta-section h2 { 
+              font-size: 36px; 
+              font-weight: 700; 
+              margin-bottom: 15px; 
+              color: white; 
+          }
+  
+          .cta-section p { 
+              font-size: 18px; 
+              color: #ccc; 
+              margin-bottom: 30px; 
+              max-width: 600px; 
+              margin: 0 auto 30px auto; 
+          }
+  
+          .btn-cta {
+              display: inline-block;
+              background: linear-gradient(45deg, #f1730a, #d65a00);
+              color: white;
+              padding: 18px 40px;
+              border-radius: 50px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 18px;
+              transition: all 0.4s ease;
+              box-shadow: 0 15px 35px rgba(241, 115, 10, 0.3);
+          }
+  
+          .btn-cta:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 20px 40px rgba(241, 115, 10, 0.4);
+              color: white;
+              text-decoration: none;
+          }
+  
+          /* --- Responsive Design --- */
+          @media (max-width: 992px) {
+              .history-section .container, 
+              .mv-container,
+              .presentation-container { 
+                  grid-template-columns: 1fr; 
+                  gap: 40px;
+              }
+              .org-level { gap: 20px; }
+              .org-box { min-width: 180px; font-size: 14px; }
+              .team-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+          }
+          
+          @media (max-width: 768px) {
+              .page-section, .about-hero { padding: 60px 15px; }
+              .hero-content h1, .section-title { font-size: 32px; }
+              .hero-content p, .section-subtitle { font-size: 16px; }
+              
+              .org-level {
+                  flex-direction: column;
+                  gap: 15px;
+              }
+              .org-sub-level {
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 10px;
+              }
+              .org-box, .org-sub-box {
+                  min-width: 200px;
+              }
+              .stats-container {
+                  grid-template-columns: repeat(2, 1fr);
+              }
+              .stat-number {
+                  font-size: 36px;
+              }
+          }
+
+
+          .org-image {
+            max-width: 100%;   /* Se ajusta al ancho disponible */
+            height: auto;      /* Mantiene proporción */
+            margin-top: 0px;
+            border-radius: 8px; /* Opcional: esquinas redondeadas */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Opcional: sombrita */
+            }
+
+      </style>
+</head>
+<body>
+    <div id="header"></div>
+
+
+    <main>
+      <!-- Encabezado de la Página -->
+      <section class="about-hero">
+          <div class="hero-content">
+              <h1>Nuestra Historia, Tu Futuro</h1>
+              <p>Más de una década construyendo confianza y superando expectativas.</p>
+          </div>
+      </section>
+
+      <!-- Sección de Presentación -->
+        <!-- Sección de Presentación con Imagen -->
+        <section class="presentation-section page-section">
+          <div class="container">
+              <h2 class="section-title">Presentación</h2>
+              <p class="section-subtitle">Establecemos relaciones comerciales altamente competitivas y positivas para todos.</p>
+              <div class="presentation-container">
+                  <div class="presentation-content">
+                      <p class="section-subtitle">Nos complace presentar nuestro portafolio de servicios. La suma de nuestros conocimientos técnicos y experiencias nos convierte en uno de sus mejores aliados en ingeniería, arquitectura y construcción.</p>
+                      <p class="section-subtitle">Nuestro principal propósito es atender las necesidades de entidades públicas y privadas con un equipo de trabajo capacitado para asumir sus proyectos más importantes. Esperamos afianzar lazos que permitan una exitosa relación empresarial.</p>
+                  </div>
+                  <div class="presentation-image">
+                      <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/experienciaCer.jpg" alt="Equipo de construcción profesional">
+                      <div class="presentation-badge">
+                          <i class="bi bi-award-fill" style="margin-right: 8px;"></i>
+                          Experiencia Certificada
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+              <!-- Sección de Estadísticas -->
+              <section class="stats-section">
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Clientes Satisfechos</span>
+                    </div>
+               
+                </div>
+            </section>
+      
+      <!-- Sección de Origen y Quiénes Somos -->
+      <section class="history-section page-section">
+        <!-- ORIGEN -->
+        <div class="container">
+            <div class="history-content">
+                <h3><i class="bi bi-building" style="margin-right: 10px; color: #f1730a;"></i>Origen</h3>
+                <p>D&S Contratistas, Consultores y Ejecutores Peruanos E.I.R.L. está constituida como una empresa responsable, de principios éticos y morales, brindando un servicio de excelencia a nuestros clientes. Cumplimos con estándares nacionales e internacionales de calidad, seguridad y medio ambiente, necesarios para un manejo integral de proyectos en el sector público y privado.</p>
+            </div>
+            <div class="history-image">
+                <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/origen.jpg" alt="Fundación de la empresa - Primeros proyectos">
+                <div class="presentation-badge">
+                    <i class="bi bi-calendar-event" style="margin-right: 8px;"></i>
+                    Desde 2014
+                </div>
+            </div>
+        </div>
+
+        <!-- QUIÉNES SOMOS -->
+        <div class="container" style="margin-top: 80px;">
+            <div class="history-image">
+                <img src="https://raw.githubusercontent.com/resources-lab/CIMG/main/equipo.jpg" alt="Nuestro equipo profesional trabajando">
+                <div class="presentation-badge">
+                    <i class="bi bi-people-fill" style="margin-right: 8px;"></i>
+                    Equipo Profesional
+                </div>
+            </div>
+            <div class="history-content">
+                <h3><i class="bi bi-people-fill" style="margin-right: 10px; color: #f1730a;"></i>Quiénes Somos</h3>
+                <div class="history-quote">
+                    Con más de 10 años de experiencia en el mercado del diseño, consultoría y ejecución de construcciones.
+                </div>
+                <p>Somos un equipo humano y profesional cuyo objetivo es construir relaciones satisfactorias a largo plazo. Contamos con profesionales de calidad en todas las ramas del diseño y la construcción, conformando un equipo de alto desempeño que nos permite ofrecer servicios integrales con el mayor compromiso, calidad y cumplimiento.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sección de Misión y Visión -->
+    <section class="mission-vision-section page-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Pilares</h2>
+            <p class="section-subtitle">La base de nuestro compromiso y la guía para nuestro futuro.</p>
+            <div class="mv-container">
+                <div class="mv-card">
+                    <div class="icon"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                    <h3>Misión</h3>
+                    <p>Brindar el mejor servicio de Ingeniería en Construcción, Consultoría y Ejecución de proyectos, superando las expectativas de nuestros clientes y contribuyendo al desarrollo de la calidad de vida con la más elevada vocación de servicio.</p>
+                </div>
+                <div class="mv-card">
+                    <div class="icon"><i class="bi bi-eye-fill"></i></div>
+                    <h3>Visión</h3>
+                    <p>Ser parte del grupo de empresas constructoras líderes en el Perú, contribuyendo al crecimiento del país con la ejecución de proyectos de alta calidad que trasciendan y sumen experiencias y reconocimiento en los próximos años.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    <!-- Sección de Organigrama con Imagen -->
+    <section class="org-chart-section page-section" style="background-color: #f0f2f5; padding: 50px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Nuestra Organización</h2>
+            <p class="section-subtitle">Un equipo estructurado para garantizar la excelencia en cada proyecto.</p>
+            
+            <!-- Imagen del organigrama -->
+            <img src="./img/organigrama.jpg" alt="Organigrama de la empresa" class="org-image">
+        </div>
+    </section>
+  
+<!-- Sección de Llamada a la Acción (CTA) -->
+<section class="cta-section">
+  <div class="container">
+      <h2 class="section-title" style="color: white;">¿Listo para Construir con Nosotros?</h2>
+      <p class="section-subtitle" style="margin-bottom: 40px; color: #ccc;">Nuestro equipo está preparado para asesorarte y ofrecerte la mejor solución para tu proyecto.</p>
+      <a href="index.html#contacto" class="btn-cta">
+          <i class="bi bi-chat-dots-fill" style="margin-right: 10px;"></i>
+          Contactar Ahora
+      </a>
+  </div>
+</section>
+  </main>
+    
+    <div id="footer"></div>
+
+    <script>
+        fetch("header.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("header").innerHTML = data;
+          });
+      </script>
+     <script>
+        fetch("footer.html")
+          .then(res => res.text())
+          .then(data => {
+            document.getElementById("footer").innerHTML = data;
+          });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+      
+</body>
+</html>
